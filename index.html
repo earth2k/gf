@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1 Year Anniversary 💜</title>
+
+<style>
+/* =================== GLOBAL =================== */
+body{
+  margin:0;
+  font-family:"Segoe UI",system-ui,sans-serif;
+  background:linear-gradient(135deg,#f3e8ff,#e9d5ff,#fbcfe8);
+  overflow:hidden;
+}
+.screen{
+  position:fixed;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:1s;
+}
+.hidden{opacity:0;pointer-events:none}
+
+/* =================== BUTTON =================== */
+.btn{
+  padding:20px 70px;
+  border:none;
+  border-radius:60px;
+  font-size:20px;
+  cursor:pointer;
+  background:white;
+  color:#8b5cf6;
+  box-shadow:0 20px 40px rgba(0,0,0,.25);
+}
+
+/* =================== HEART =================== */
+.heart-box{
+  width:260px;
+  height:230px;
+  position:relative;
+  cursor:pointer;
+}
+.heart{
+  width:100%;
+  height:100%;
+  background:#c084fc;
+  clip-path:path("M130 220 C-20 120 40 10 130 80 C220 10 280 120 130 220 Z");
+  overflow:hidden;
+}
+.fill{
+  position:absolute;
+  bottom:0;
+  width:100%;
+  height:0%;
+  background:linear-gradient(180deg,#f472b6,#a855f7);
+  transition:.2s;
+}
+
+/* =================== KEYPAD =================== */
+.keypad{
+  display:grid;
+  grid-template-columns:repeat(3,80px);
+  gap:15px;
+}
+.key{
+  width:80px;
+  height:80px;
+  border-radius:50%;
+  background:white;
+  font-size:22px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  box-shadow:0 10px 20px rgba(0,0,0,.25);
+}
+.pass{
+  font-size:22px;
+  letter-spacing:6px;
+  margin-bottom:20px;
+}
+
+/* =================== ANNIVERSARY (ของเดิม) =================== */
+:root{
+  --bg1:#eef4ff;
+  --bg2:#dbe8ff;
+  --bg3:#e3dcff;
+  --deep:#4f5b82;
+}
+.glow{
+  position:fixed;
+  width:520px;height:520px;
+  background:radial-gradient(circle,rgba(160,190,255,.65),transparent 70%);
+  filter:blur(90px);
+  animation:move 26s infinite alternate ease-in-out;
+  z-index:0;
+}
+.g1{top:-220px;left:-200px}
+.g2{bottom:-240px;right:-200px;animation-delay:6s}
+@keyframes move{to{transform:translateY(160px)}}
+.bg{position:fixed;inset:0;pointer-events:none;z-index:1}
+.float-img{position:absolute;bottom:-80px;width:30px;height:30px;border-radius:50%;object-fit:cover;opacity:.85;animation:rise linear forwards}
+.floating{position:absolute;bottom:-60px;font-size:18px;animation:rise linear forwards;opacity:.7}
+@keyframes rise{
+  from{transform:translateY(0) scale(.9);opacity:0}
+  20%{opacity:1}
+  to{transform:translateY(-120vh) scale(1.15);opacity:0}
+}
+.main{
+  position:relative;
+  z-index:10;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.card{
+  max-width:460px;
+  background:rgba(235,245,255,.9);
+  backdrop-filter:blur(30px);
+  border-radius:54px;
+  padding:52px 36px;
+  text-align:center;
+  box-shadow:0 45px 120px rgba(120,170,255,.35);
+}
+.photo-wrap{width:200px;height:200px;margin:0 auto 28px}
+.photo{width:100%;height:100%;border-radius:50%;overflow:hidden;border:7px solid #fff}
+.photo img{width:100%;height:100%;object-fit:cover}
+h2{font-size:32px;color:var(--deep)}
+.names{font-size:19px;color:#6a78a0}
+.badge{
+  margin-top:16px;
+  padding:12px 28px;
+  border-radius:30px;
+  background:linear-gradient(135deg,#9fc4ff,#b19cff);
+  color:#fff;
+}
+</style>
+</head>
+
+<body>
+
+<!-- ========== SCREEN 1 : OPEN ========== -->
+<div class="screen" id="s1">
+  <button class="btn" onclick="go(2)">เปิด</button>
+</div>
+
+<!-- ========== SCREEN 2 : HEART ========== -->
+<div class="screen hidden" id="s2">
+  <div class="heart-box" onclick="fillHeart()">
+    <div class="heart">
+      <div class="fill" id="fill"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== SCREEN 3 : PASSWORD ========== -->
+<div class="screen hidden" id="s3">
+  <div>
+    <div class="pass" id="pass">____</div>
+    <div class="keypad">
+      <div class="key" onclick="press(1)">1</div>
+      <div class="key" onclick="press(2)">2</div>
+      <div class="key" onclick="press(3)">3</div>
+      <div class="key" onclick="press(4)">4</div>
+      <div class="key" onclick="press(5)">5</div>
+      <div class="key" onclick="press(6)">6</div>
+      <div class="key" onclick="press(7)">7</div>
+      <div class="key" onclick="press(8)">8</div>
+      <div class="key" onclick="press(9)">9</div>
+      <div></div>
+      <div class="key" onclick="press(0)">0</div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== SCREEN 4 : ANNIVERSARY (เดิม) ========== -->
+<div class="screen hidden" id="s4">
+  <div class="glow g1"></div>
+  <div class="glow g2"></div>
+  <div class="bg" id="bg"></div>
+
+  <div class="main">
+    <div class="card">
+      <div class="photo-wrap">
+        <div class="photo">
+          <img src="main.jpg">
+        </div>
+      </div>
+      <h2>Happy Anniversary</h2>
+      <div class="names">เอิร์ท 🤍 น้องโอปอ</div>
+      <div class="badge">1Y • 08/02/25</div>
+      <div id="loveTime"></div>
+      <div class="message">เขียนอะไรดีน้าา 💜</div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ====== NAV ====== */
+function go(n){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.add('hidden'))
+  document.getElementById('s'+n).classList.remove('hidden')
+}
+
+/* ====== HEART ====== */
+let level=0
+function fillHeart(){
+  if(level>=100)return
+  level+=5
+  document.getElementById('fill').style.height=level+"%"
+  if(level>=100)setTimeout(()=>go(3),600)
+}
+
+/* ====== PASSWORD ====== */
+let input=""
+const correct="080225"
+function press(n){
+  if(input.length>=6)return
+  input+=n
+  document.getElementById('pass').innerText=input.padEnd(6,'_')
+  if(input.length===6){
+    if(input===correct)go(4)
+    else{input="";document.getElementById('pass').innerText="______"}
+  }
+}
+
+/* ====== LOVE TIME ====== */
+function updateLoveTime(){
+  const start=new Date(2025,1,8,7,40,0)
+  const now=new Date()
+  let d=Math.floor((now-start)/1000)
+  const day=Math.floor(d/86400);d%=86400
+  const h=Math.floor(d/3600);d%=3600
+  const m=Math.floor(d/60)
+  const s=d%60
+  loveTime.innerHTML=`${day} วัน ${h} ชม ${m} นาที ${s} วิ`
+}
+setInterval(updateLoveTime,1000)
+updateLoveTime()
+</script>
+
+</body>
+</html>
